@@ -1,0 +1,37 @@
+﻿<template name="Principal">
+	<body>
+		<div class="texture-overlay"></div>
+		<div class="container">
+			<div class="row nav-wrapper">
+				<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+					<a href="#" class="logofont">trabalhogram</a>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6 text-right navicon">
+					<p>MENU</p><a id="trigger-overlay" class="nav_slide_button nav-toggle" href="#"><span></span></a>
+				</div>
+			</div>
+		<section id="main" data-layout="layout-1">
+			<section id="content">
+				<div class="container">
+					{{> Template.dynamic template=main}}
+				</div>
+			</section>
+		</section>
+		</div>
+	
+	
+		<div class="overlay overlay-boxify">
+			<nav>
+				<ul>
+					<li><a href="#about"><i class="fa fa-heart"></i>About</a></li>
+					<li><a href="#features"><i class="fa fa-flash"></i>Features</a></li>
+				</ul>
+				<ul>
+					<li><a href="#screenshots"><i class="fa fa-desktop"></i>Screenshots</a></li>
+					<li><a href="#download"><i class="fa fa-download"></i>Download</a></li>
+				</ul>
+			</nav>
+		</div>
+	
+	</body>
+</template>

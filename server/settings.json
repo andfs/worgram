@@ -1,0 +1,12 @@
+{
+	"public": {
+					"pagarmeKey_criptografia": "ek_test_nyHfZg0a40XZryAS8bFHAiVPTS8Aab",
+					"valorBronze": "20",
+					"valorPrata": "50",
+					"valorOuro": "100"
+			   },
+
+	"private": {
+					"pagarmeApiKey": "ak_test_T6dP4UisH26UhIbsFc80hnR4CUd26R"
+			   }
+}
