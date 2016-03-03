@@ -32,3 +32,23 @@ Template.Usar.onRendered(function() {
         });
     }
 });
+
+Template.Usar.events({
+	"submit .hashtag": function(event) {
+		event.preventDefault();
+		Meteor.call('procurarHashtag', event.target.hashtag.value, Session.get('valor'), Session.get('token'), function(erro, result) {
+			if(erro) {
+				
+			}
+		});
+	}
+});
+
+Template.Usar.helpers({
+	resultados: function() {
+		
+	},
+	hashtag: function () {
+		
+	}
+});

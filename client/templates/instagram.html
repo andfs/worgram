@@ -56,74 +56,80 @@
 
 <template name="Usar">
 	<section id="content">
-		<div class="container">	
-			<div class="form-group fg-float">
-				<div class="fg-line">
-					<input type="text" class="form-control fg-input">
-					<label class="fg-label">Digite a hashtag e pressione Enter</label>
-				</div>
-			</div>
-			
-			<div class="col-sm-12">
-				<center>
-					Foram enconradas 145 fotos com a hashtag <i>#minhahashtag</i>
-				</center>
-			</div>
-			<br/>
-			<div class="col-sm-12 col-md-4 form-group fg-float">
-				<div class="fg-line">
-					<input type="text" class="form-control fg-input">
-					<label class="fg-label">Comentário 1</label>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-4 form-group fg-float">
-				<div class="fg-line">
-					<input type="text" class="form-control fg-input">
-					<label class="fg-label">Comentário 2</label>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-4 form-group fg-float">
-				<div class="fg-line">
-					<input type="text" class="form-control fg-input">
-					<label class="fg-label">Comentário 3</label>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-4 form-group fg-float">
-				<div class="fg-line">
-					<input type="text" class="form-control fg-input">
-					<label class="fg-label">Comentário 4</label>
-				</div>
-			</div>
-							
-			<div class="col-sm-12" style="padding-top: 30px;">
-				<button class="btn btn-primary btn-icon-text waves-effect" style="width: 100%"><i class="zmdi zmdi-thumb-up zmdi-hc-fw"></i> Curtir fotos</button>
-			</div>
-			
-			
-			<div class="col-sm-12">
-				<button class="btn btn-primary btn-icon-text waves-effect" style="width: 100%"><i class="zmdi zmdi-comment-text zmdi-hc-fw"></i> Comentar</button>
-			</div>
-			
-			{{#each resultados}}
-				<div class="col-sm-4">
-					<div class="card small">
-					  <div class="card-image">
-						<img src="{{imagem}}">
-						<span class="card-title">{{hashtag}}</span>
-					  </div>
-					  <div class="card-content">
-						<p>{{descricao}}</p>
-					  </div>
-					  <div class="card-action">
-						<a href="#">Não curtir esta foto</a>
-						<a href="#">Não comentar esta foto</a>
-					  </div>
+		<div class="container">
+			<form class="hashtag">
+				<div class="form-group fg-float">
+					<div class="fg-line">
+						<input type="text" class="form-control fg-input" name="hashtag">
+						<label class="fg-label">Digite a hashtag e pressione Enter</label>
+						
 					</div>
-				  </div>
-			{{/each}}
+				</div>
+				<input type="submit" style="display: none;"/>
+			</form>
+			
+			{{#if resultados}}
+				<div class="col-sm-12">
+					<center>
+						Foram enconradas {{resultados.length}} fotos com a hashtag <i>{{hashtag}}</i>
+					</center>
+				</div>
+				<br/>
+				<div class="col-sm-6 col-md-3 form-group fg-float">
+					<div class="fg-line">
+						<input type="text" class="form-control fg-input">
+						<label class="fg-label">Comentário 1</label>
+					</div>
+				</div>
+				
+				<div class="col-sm-6 col-md-3 form-group fg-float">
+					<div class="fg-line">
+						<input type="text" class="form-control fg-input">
+						<label class="fg-label">Comentário 2</label>
+					</div>
+				</div>
+				
+				<div class="col-sm-6 col-md-3 form-group fg-float">
+					<div class="fg-line">
+						<input type="text" class="form-control fg-input">
+						<label class="fg-label">Comentário 3</label>
+					</div>
+				</div>
+				
+				<div class="col-sm-6 col-md-3 form-group fg-float">
+					<div class="fg-line">
+						<input type="text" class="form-control fg-input">
+						<label class="fg-label">Comentário 4</label>
+					</div>
+				</div>
+								
+				<div class="col-sm-6" style="padding-top: 30px;">
+					<button class="btn btn-primary btn-icon-text waves-effect" style="width: 100%"><i class="zmdi zmdi-thumb-up zmdi-hc-fw"></i> Curtir fotos</button>
+				</div>
+				
+				
+				<div class="col-sm-6">
+					<button class="btn btn-primary btn-icon-text waves-effect" style="width: 100%"><i class="zmdi zmdi-comment-text zmdi-hc-fw"></i> Comentar</button>
+				</div>
+				
+				{{#each resultados}}
+					<div class="col-sm-4">
+						<div class="card small">
+						  <div class="card-image">
+							<img src="{{imagem}}">
+							<span class="card-title">{{hashtag}}</span>
+						  </div>
+						  <div class="card-content">
+							<p>{{descricao}}</p>
+						  </div>
+						  <div class="card-action">
+							<a href="#">Não curtir esta foto</a>
+							<a href="#">Não comentar esta foto</a>
+						  </div>
+						</div>
+					  </div>
+				{{/each}}
+			{{/if}}
 		</div>
 	</section>
 </template>
