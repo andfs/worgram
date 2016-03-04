@@ -40,6 +40,9 @@ Template.Usar.events({
 			if(erro) {
 				
 			}
+			else {
+				qtdHashtag = result;
+			}
 		});
 	}
 });
@@ -50,5 +53,9 @@ Template.Usar.helpers({
 	},
 	hashtag: function () {
 		
+	},
+	
+	qtdHashtag: function() {
+		return qtdHashtag;
 	}
 });
