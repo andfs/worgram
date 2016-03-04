@@ -33,15 +33,23 @@ Template.Usar.onRendered(function() {
     }
 });
 
+Template.Usar.onCreated(function(){
+	qtdHashtag = new ReactiveVar();
+	hashtagText = new ReactiveVar();
+    isVisualizarFotos = new ReactiveVar();
+    isVisualizarFotos.set(false);
+});
+
 Template.Usar.events({
 	"submit .hashtag": function(event) {
 		event.preventDefault();
-		Meteor.call('procurarHashtag', event.target.hashtag.value, Session.get('valor'), Session.get('token'), function(erro, result) {
+		hashtagText.set(event.target.hashtag.value);
+		Meteor.call('procurarHashtag', event.target.hashtag.value, function(erro, result) {
 			if(erro) {
 				
 			}
 			else {
-				qtdHashtag = result;
+				qtdHashtag.set(result);
 			}
 		});
 	}
@@ -52,10 +60,26 @@ Template.Usar.helpers({
 		
 	},
 	hashtag: function () {
-		
+		return hashtagText.get();
 	},
 	
 	qtdHashtag: function() {
-		return qtdHashtag;
-	}
+		return qtdHashtag.get();
+	},
+
+    curtir: function() {
+
+    },
+
+    comentar: function() {
+
+    },
+
+    visualizar: function() {
+        isVisualizarFotos.set(true);
+    },
+
+    visualizarFotos: function() {
+        isVisualizarFotos.get();
+    }
 });

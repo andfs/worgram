@@ -71,7 +71,7 @@
 			{{#if qtdHashtag}}
 				<div class="col-sm-12">
 					<center>
-						Foram enconradas {{qtdHashtag}} fotos com a hashtag <i>{{hashtag}}</i>
+						Foram enconradas <b>{{qtdHashtag}}</b> fotos com a hashtag <i>#{{hashtag}}</i>
 					</center>
 				</div>
 				<br/>
@@ -104,34 +104,37 @@
 				</div>
 								
 				<div class="col-sm-6" style="padding-top: 30px;">
-					<button class="btn btn-primary btn-icon-text waves-effect" style="width: 100%"><i class="zmdi zmdi-thumb-up zmdi-hc-fw"></i> Curtir todas as fotos</button>
+					<button class="btn btn-primary btn-icon-text waves-effect curtir" style="width: 100%"><i class="zmdi zmdi-thumb-up zmdi-hc-fw"></i> Curtir todas as fotos</button>
 				</div>
 				
 				
-				<div class="col-sm-6">
-					<button class="btn btn-primary btn-icon-text waves-effect" style="width: 100%"><i class="zmdi zmdi-comment-text zmdi-hc-fw"></i> Comentar todas as fotos</button>
+				<div class="col-sm-6" style="padding-top: 30px;">
+					<button class="btn btn-primary btn-icon-text waves-effect comentar" style="width: 100%"><i class="zmdi zmdi-comment-text zmdi-hc-fw"></i> Comentar todas as fotos</button>
 				</div>
 				<div class="col-sm-12">
-					<button class="btn btn-primary btn-icon-text waves-effect" style="width: 100%"><i class="zmdi zmdi-comment-text zmdi-hc-fw"></i> Visualizar as fotos recentes da hashtag</button>
+					<button class="btn btn-primary btn-icon-text waves-effect visualizar" style="width: 100%"><i class="zmdi zmdi-comment-text zmdi-hc-fw"></i> Visualizar as fotos recentes da hashtag</button>
 				</div>
 				
-				{{#each resultados}}
-					<div class="col-sm-4">
-						<div class="card small">
-						  <div class="card-image">
-							<img src="{{imagem}}">
-							<span class="card-title">{{hashtag}}</span>
+				{{#if visualizarFotos}}
+					{{#each resultados}}
+						<div class="col-sm-4">
+							<div class="card small">
+							  <div class="card-image">
+								<img src="{{imagem}}">
+								<span class="card-title">{{hashtag}}</span>
+							  </div>
+							  <div class="card-content">
+								<p>{{descricao}}</p>
+							  </div>
+							  <div class="card-action">
+								<a href="#">Não curtir esta foto</a>
+								<a href="#">Não comentar esta foto</a>
+							  </div>
+							</div>
 						  </div>
-						  <div class="card-content">
-							<p>{{descricao}}</p>
-						  </div>
-						  <div class="card-action">
-							<a href="#">Não curtir esta foto</a>
-							<a href="#">Não comentar esta foto</a>
-						  </div>
-						</div>
-					  </div>
-				{{/each}}
+					{{/each}}
+				{{/if}}
+				
 			{{/if}}
 		</div>
 	</section>

@@ -8,6 +8,7 @@ function pagar(valor) {
 				else {
 					Session.set('valor', valor);
 					Session.set('token', data.token);
+					Meteor.call('salvarPagamento', valor, data.token);
 				}
 			});
 		}
