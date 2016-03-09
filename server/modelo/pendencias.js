@@ -22,6 +22,12 @@ Pendencia = new Astro.Class({
 		        return [];
 		    }
 	    },
+	    comentarios: {
+	    	type: 'array',
+	    	default: function() {
+	    		return [];
+	    	}
+	    },
 	    hashtag: 'string'
   }
 });

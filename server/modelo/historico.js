@@ -6,24 +6,10 @@ Historico = new Astro.Class({
 
   fields: {
 	    userId: 'string',
-	    idsFotosCurtidas: {
-	    	type: 'array',
-		    default: function() {
-		        return [];
-		    }
-	    },
-	    idsFotosComentadas: {
-	    	type: 'array',
-		    default: function() {
-		        return [];
-		    }
-	    },
-	    hashtagsUsadas: {
-	    	type: 'array',
-	    	nested: 'HashtagsUsadas',
-		    default: function() {
-		    	return [];
-		    }
-	    }
+	    idFotoCurtida: 'string',
+	    idFotoComentada: 'string',
+	    hashtag: 'string',
+	    data: 'date'
   }
+
 });

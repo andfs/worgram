@@ -100,12 +100,12 @@ Template.Usar.events({
 
     "click .comentar": function(event, template) {
         event.preventDefault();
-        var coments = {
-                        comentario1 : template.instance().find('#template1'),
-                        comentario2 : template.instance().find('#template2'),
-                        comentario3 : template.instance().find('#template3'),
-                        comentario4 : template.instance().find('#template4')
-                    };
+        var coments = [
+                        template.instance().find('#template1'),
+                        template.instance().find('#template2'),
+                        template.instance().find('#template3'),
+                        template.instance().find('#template4')
+                    ];
 
 
         Meteor.call('comentar', hashtagText.get(), coments, function(erro, result) {
