@@ -90,32 +90,23 @@ Template.Usar.events({
             if(erro) {
                 
             }
-            else {
-                var arrayRecentes = recentes.get().concat(result.data);
-                recentes.set(arrayRecentes);
-                nextId.set(result.nextId);
-            }
+            
         });
     },
 
     "click .comentar": function(event, template) {
         event.preventDefault();
         var coments = [
-                        template.instance().find('#template1'),
-                        template.instance().find('#template2'),
-                        template.instance().find('#template3'),
-                        template.instance().find('#template4')
+                        template.find('#comentario1').value,
+                        template.find('#comentario2').value,
+                        template.find('#comentario3').value,
+                        template.find('#comentario4').value
                     ];
 
 
         Meteor.call('comentar', hashtagText.get(), coments, function(erro, result) {
             if(erro) {
                 
-            }
-            else {
-                var arrayRecentes = recentes.get().concat(result.data);
-                recentes.set(arrayRecentes);
-                nextId.set(result.nextId);
             }
         });
     },

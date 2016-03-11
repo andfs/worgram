@@ -2,12 +2,11 @@ Meteor.startup(function () {
 	SyncedCron.add({
 	  name: 'Executar Pendências',
 	  schedule: function(parser) {
-	    return parser.text('every 5 mins');
+	    return parser.text('every 28 mins');
 	  },
 	  job: function() {
 	    var pendencias = pendenciasCollection.find({$or: [{idsFotosPendentesCurtir: { $exists: true, $ne: [] } }, 
-	    												  {idsFotosPendentesComentar: { $exists: true, $ne: [] } } ]})
-	                     .sort({dataPendencia: -1});
+	    												  {idsFotosPendentesComentar: { $exists: true, $ne: [] } } ]}, {sort: {dataPendencia: -1}});
 
 	    for (var i = 0; i < pendencias.length; i++) {
 	    	var pendencia = pendencias[i];
@@ -24,5 +23,6 @@ Meteor.startup(function () {
 	    	pendencia.remove();
 	    };
 	  }
-	});    
+	});
+	SyncedCron.start();   
 });
