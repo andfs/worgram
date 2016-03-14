@@ -1,6 +1,6 @@
 ﻿<template name="Principal">
 	<body>
-		<section class="home">
+		<section class="{{#if isActivePath '/'}} home {{else}} {{#if isActivePath '/ajuda'}} fundoAjuda {{/if}} {{/if}}">
 			<div class="p-t-15">
 				<div class="texture-overlay"></div>
 				<div class="container">
@@ -18,12 +18,12 @@
 			<div class="overlay overlay-boxify">
 				<nav>
 					<ul>
-						<li><a href="#about"><i class="fa fa-heart"></i>About</a></li>
-						<li><a href="#features"><i class="fa fa-flash"></i>Features</a></li>
+						<li><a href="#services"><i class="fa fa-heart linkMenu"></i>Serviços</a></li>
+						<li><a href="#information"><i class="fa fa-flash linkMenu"></i>Preços</a></li>
 					</ul>
 					<ul>
-						<li><a href="#screenshots"><i class="fa fa-desktop"></i>Screenshots</a></li>
-						<li><a href="#download"><i class="fa fa-download"></i>Download</a></li>
+						<li><a href="/ajuda"><i class="fa fa-desktop linkMenu"></i>Ajuda</a></li>
+						<li><a href="/ajuda"><i class="fa fa-download linkMenu"></i>Termos e Condições</a></li>
 					</ul>
 				</nav>
 			</div>

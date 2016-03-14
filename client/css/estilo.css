@@ -95,3 +95,20 @@ footer .glyphicon {
 footer .glyphicon:hover {
   color: #306d9f;
 }
+
+.fundoAjuda {
+  background: rgba(255,255,255,0.5) url(img/help.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 800px;
+  position: absolute;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0.7;
+}
+
+.transparente {
+  background-color: transparent !important;
+}

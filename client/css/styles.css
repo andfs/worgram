@@ -1,9 +1,9 @@
-﻿.panel
+﻿.panelPreco
 {
     text-align: center;
 }
-.panel:hover { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35); }
-.panel-body
+.panelPreco:hover { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35); }
+.panelPreco-body
 {
     padding: 0px;
     text-align: center;
@@ -216,6 +216,7 @@ Nav Overlay
     width: 100%;
     height: 100%;
     background-image: url(../img/grid.png);
+    z-index: -1;
 }
 
 .nav-toggle {

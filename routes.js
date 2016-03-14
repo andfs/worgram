@@ -19,6 +19,13 @@ FlowRouter.route('/login', {
 	}
 });
 
+FlowRouter.route('/ajuda', {
+	name: 'instagram',
+	action: function() {
+		BlazeLayout.render('Principal', {main: 'Ajuda'});
+	}
+});
+
 FlowRouter.route('/instagram', {
 	name: 'instagram',
 	action: function() {
