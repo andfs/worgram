@@ -40,6 +40,10 @@ Template.Usar.onCreated(function(){
     nextId = new ReactiveVar();
     isVisualizarFotos = new ReactiveVar();
     isVisualizarFotos.set(false);
+    var self = this;
+    self.autorun(function() {
+        self.subscribe('usersCollection');
+    });
 });
 
 Template.Usar.events({

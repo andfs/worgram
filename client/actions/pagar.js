@@ -18,7 +18,7 @@ function pagar(valor) {
 	checkout.open(params);
 }
 
-Template.Pagar.events({
+Template.Precos.events({
 	"click .bronze": function() {
 		pagar(Meteor.settings.public.valorBronze);
 	},

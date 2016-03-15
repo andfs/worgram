@@ -1,0 +1,42 @@
+<template name="Menu">
+    <header id="header" class="clearfix" data-current-skin="blue">
+        <ul class="header-inner">
+            <li id="menu-trigger" data-trigger="#sidebar">
+                <div class="line-wrap">
+                    <div class="line top"></div>
+                    <div class="line center"></div>
+                    <div class="line bottom"></div>
+                </div>
+            </li>
+        </ul>
+    </header>
+    <section id="main">
+        <aside id="sidebar" class="sidebar c-overflow">
+            <div class="profile-menu">
+                <a href="">
+                    <div class="profile-pic">
+                        <img src="{{foto}}" alt="">
+                    </div>
+
+                    <div class="profile-info">
+                        {{userName}}
+
+                        <i class="zmdi zmdi-caret-down"></i>
+                    </div>
+                </a>
+
+                <ul class="main-menu">
+                    <li>
+                        <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+
+            <ul class="main-menu">
+                <li>
+                    <a href="/historico-pendencias"><i class="zmdi zmdi-time zmdi-hc-fw"></i> Histórico/Pendências</a>
+                </li>
+            </ul>
+        </aside>
+    </section>
+</template>
