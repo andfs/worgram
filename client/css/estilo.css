@@ -109,6 +109,54 @@ footer .glyphicon:hover {
   opacity: 0.7;
 }
 
-.transparente {
-  background-color: transparent !important;
+.fundoInstagram {
+  background: rgba(255,255,255,0.5) url(img/instagram.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 800px;
+  position: absolute;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0.7;
 }
+
+.cartao {
+    position: relative;
+    margin: 0.5rem 0 1rem 0;
+    background-color: #fff;
+    transition: box-shadow .25s;
+    border-radius: 2px;
+}
+
+.cartao .cartao-imagem {
+    position: relative;
+}
+
+.cartao .cartao-imagem .cartao-title {
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+}
+.cartao .cartao-title {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+
+.cartao .cartao-content {
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+}
+
+
+.cartao .cartao-action {
+    border-top: 1px solid rgba(160,160,160,0.2);
+    padding: 20px;
+}
+
+
+

@@ -7,6 +7,9 @@
 			   },
 
 	"private": {
-					"pagarmeApiKey": "ak_test_T6dP4UisH26UhIbsFc80hnR4CUd26R"
+					"pagarmeApiKey": "ak_test_T6dP4UisH26UhIbsFc80hnR4CUd26R",
+					"qtdBronze": "1440",
+					"qtdPrata": "10080",
+					"qtdOuro": "43200"
 			   }
 }

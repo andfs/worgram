@@ -2,7 +2,7 @@ Template.Menu.events({
         //Toggle
         "click #menu-trigger": function(e) {
         	e.preventDefault();
-            var x = $('#sidebar');
+            var x = $(e.currentTarget).data('trigger');
 
             $(x).toggleClass('toggled');
             $('#menu-trigger').toggleClass('open');
@@ -34,15 +34,29 @@ Template.Menu.events({
                     }
                 });
             }
+        },
+
+        "click .profileMenu": function(e) {
+	         e.preventDefault();
+	         $(e.currentTarget).parent().toggleClass('toggled');
+	    	 $(e.currentTarget).next().slideToggle(200);
         }
+        
+});
+
+Template.Menu.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        self.subscribe('usersCollection');
+    });
 });
 
 Template.Menu.helpers({
 	foto: function() {
-        return Meteor.user().services.instagram.profile_picture;
+		return Meteor.user().services.instagram.profile_picture;
     },
 
     userName: function() {
-    	return Meteor.user().services.instagram.username;
+		return Meteor.user().services.instagram.username;
     }
 });

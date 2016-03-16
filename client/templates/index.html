@@ -3,17 +3,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	</head>
 	<body>
-		<section class="{{#if isActivePath '/'}} home {{else}} {{#if isActivePath '/ajuda'}} fundoAjuda {{/if}} {{/if}}">
-			<div class="p-t-15">
-				<div class="texture-overlay"></div>
-				<div class="container">
-					<div class="row nav-wrapper">
-						<div class="col-xs-offset-6 col-xs-6 text-right navicon">
-							<a id="trigger-overlay" class="nav_slide_button nav-toggle"><span></span></a>
+		<section class="{{#if isActivePath '/'}} home {{else}} {{#if isActivePath '/ajuda'}} fundoAjuda {{else}} {{#if isActivePath '/instagram'}} fundoInstagram {{/if}} {{/if}} {{/if}}" id="{{#if isActivePath '/instagram'}}main{{/if}}">
+			{{#if isNotActivePath '/instagram'}}
+				<div class="p-t-15">
+					<div class="texture-overlay"></div>
+					<div class="container">
+						<div class="row nav-wrapper">
+							<div class="col-xs-offset-6 col-xs-6 text-right navicon">
+								<a id="trigger-overlay" class="nav_slide_button nav-toggle"><span></span></a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			{{/if}}
 		
 			
 			{{> Template.dynamic template=main}}

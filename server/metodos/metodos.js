@@ -11,7 +11,7 @@
 				if(historicoPesquisa > 1) {
 					throw new Meteor.Error("400", "Número de hashtags do pacote foi extrapolado. Por favor escolha um novo plano");		
 				}
-			   	return true;
+			   	return Meteor.settings.private.qtdBronze;
 			}
 			else 
 			{
@@ -28,7 +28,7 @@
 				if(historicoPesquisa > 3) {
 					throw new Meteor.Error("400", "Número de hashtags do pacote foi extrapolado. Por favor escolha um novo plano");		
 				}
-			   	return true;
+			   	return Meteor.settings.private.qtdPrata;
 			}
 			else 
 			{
@@ -41,7 +41,7 @@
 				if(historicoPesquisa > 10) {
 					throw new Meteor.Error("400", "Número de hashtags do pacote foi extrapolado. Por favor escolha um novo plano");		
 				}
-		   	return true;
+		   	return return Meteor.settings.private.qtdOuro;
 		}
 		else 
 		{
@@ -77,7 +77,7 @@ Meteor.methods({
 	
 	procurarHashtag: function(hashtag) {
 		if(Meteor.userId) {
-			checarPagamento(hashtag);
+			//checarPagamento(hashtag);
 			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "?access_token=" + Meteor.user().services.instagram.accessToken); 
 			
 			resultados = result.data.data.media_count;
@@ -96,7 +96,7 @@ Meteor.methods({
 
 	procurarRecentes: function(hashtag, nextId) {
 		if(Meteor.userId) {
-			checarPagamento(hashtag);
+			//checarPagamento(hashtag);
 			var param = "&count=50";
 			if(nextId) {
 				param += "&MAX_TAG_ID = " + nextId;
@@ -114,14 +114,14 @@ Meteor.methods({
 		}
 	},
 
-	curtir: function(hashtag, checar) {
+	curtir: function(hashtag, checar, qtd) {
 		this.unblock();
 		if(Meteor.userId) {
 			if(checar == undefined || checar == true) {
-				checarPagamento(hashtag);
+				qtd = checarPagamento(hashtag);
 			}
 
-			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "/media/recent?access_token=" + Meteor.user().services.instagram.accessToken);
+			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "/media/recent?access_token=" + Meteor.user().services.instagram.accessToken+"&count="qtd);
 			var data = result.data.data;
 
 			for (var i = 0; i < data.length; i++) 
@@ -141,14 +141,14 @@ Meteor.methods({
 		}
 	},
 
-	comentar: function(hashtag, coments, checar){
+	comentar: function(hashtag, coments, checar, qtd){
 		this.unblock();
 		if(Meteor.userId) {
 			if(checar == undefined || checar == true) {
-				checarPagamento(hashtag);
+				qtd = checarPagamento(hashtag);
 			}
 
-			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "/media/recent?access_token=" + Meteor.user().services.instagram.accessToken);
+			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "/media/recent?access_token=" + Meteor.user().services.instagram.accessToken+"&count="qtd);
 			var data = result.data.data;
 
 			for (var j = 0; j < coments.length; j++) {
@@ -177,12 +177,13 @@ Meteor.methods({
 
 	curtirComentar: function(hashtag, coments, checar) {
 		if(Meteor.userId) {
+			var qtd;
 			if(checar == undefined || checar == true) {
-				checarPagamento(hashtag);
+				qtd = checarPagamento(hashtag);
 			}
 
-			Meteor.call('curtir', hashtag, false);
-			Meteor.call('comentar', hashtag, coments, false);
+			Meteor.call('curtir', hashtag, false, qtd);
+			Meteor.call('comentar', hashtag, coments, false, qtd);
 		}
 	}
 });
