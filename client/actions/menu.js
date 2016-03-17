@@ -1,5 +1,4 @@
 Template.Menu.events({
-        //Toggle
         "click #menu-trigger": function(e) {
         	e.preventDefault();
             var x = $(e.currentTarget).data('trigger');
@@ -40,6 +39,17 @@ Template.Menu.events({
 	         e.preventDefault();
 	         $(e.currentTarget).parent().toggleClass('toggled');
 	    	 $(e.currentTarget).next().slideToggle(200);
+        },
+
+        "click .logout": function() {
+            Meteor.logout(function(err) {
+                if(err) {
+                    swal("Erro", "Algum erro aconteceu", "error");
+                }
+                else {
+                    FlowRouter.go('principal');
+                }
+            });
         }
         
 });

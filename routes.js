@@ -1,26 +1,17 @@
 FlowRouter.route('/', {
 	name: 'principal',
 	action: function() {
-		BlazeLayout.render('Principal', {main: 'Apresentacao'});
-	}
-});
-
-FlowRouter.route('/saiba-mais', {
-	name: 'saiba-mais',
-	action: function() {
-		BlazeLayout.render('Principal', {main: 'SaibaMais'});
-	}
-});
-
-FlowRouter.route('/login', {
-	name: 'instagram',
-	action: function() {
-		BlazeLayout.render('Principal', {main: 'Login'});
+		if(Meteor.userId()) {
+			FlowRouter.go('instagram');
+		}
+		else {
+			BlazeLayout.render('Principal', {main: 'Apresentacao'});
+		}
 	}
 });
 
 FlowRouter.route('/ajuda', {
-	name: 'instagram',
+	name: 'ajuda',
 	action: function() {
 		BlazeLayout.render('Principal', {main: 'Ajuda'});
 	}
@@ -32,3 +23,16 @@ FlowRouter.route('/instagram', {
 		BlazeLayout.render('Principal', {main: 'Instagram'});
 	}
 });
+
+FlowRouter.route('/comprar-pacote', {
+	name: 'comprar-pacote',
+	action: function() {
+		BlazeLayout.render('Principal', {main: 'ComprarPacote'});
+	}
+});
+
+FlowRouter.triggers.enter([function(context, redirect){
+	if(!Meteor.userId() && context.path != "/ajuda") {
+		FlowRouter.go('/')
+	}
+}]);

@@ -41,7 +41,7 @@
 				if(historicoPesquisa > 10) {
 					throw new Meteor.Error("400", "Número de hashtags do pacote foi extrapolado. Por favor escolha um novo plano");		
 				}
-		   	return return Meteor.settings.private.qtdOuro;
+		   	return Meteor.settings.private.qtdOuro;
 		}
 		else 
 		{
@@ -77,7 +77,7 @@ Meteor.methods({
 	
 	procurarHashtag: function(hashtag) {
 		if(Meteor.userId) {
-			//checarPagamento(hashtag);
+			checarPagamento(hashtag);
 			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "?access_token=" + Meteor.user().services.instagram.accessToken); 
 			
 			resultados = result.data.data.media_count;
@@ -92,11 +92,14 @@ Meteor.methods({
 		if(Meteor.userId) {
 			Meteor.users.update({_id: Meteor.userId}, {$set: {pagamento: {valor: valor, token: token, dataPagamento: new Date()}}})
 		}
+		else {
+			throw new Meteor.Error("401", "Você deve estar logado para realizar esta operação.");	
+		}
 	},
 
 	procurarRecentes: function(hashtag, nextId) {
 		if(Meteor.userId) {
-			//checarPagamento(hashtag);
+			checarPagamento(hashtag);
 			var param = "&count=50";
 			if(nextId) {
 				param += "&MAX_TAG_ID = " + nextId;
@@ -121,7 +124,7 @@ Meteor.methods({
 				qtd = checarPagamento(hashtag);
 			}
 
-			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "/media/recent?access_token=" + Meteor.user().services.instagram.accessToken+"&count="qtd);
+			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "/media/recent?access_token=" + Meteor.user().services.instagram.accessToken+"&count="+qtd);
 			var data = result.data.data;
 
 			for (var i = 0; i < data.length; i++) 
@@ -148,7 +151,7 @@ Meteor.methods({
 				qtd = checarPagamento(hashtag);
 			}
 
-			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "/media/recent?access_token=" + Meteor.user().services.instagram.accessToken+"&count="qtd);
+			var result = HTTP.get("https://api.instagram.com/v1/tags/" + hashtag + "/media/recent?access_token=" + Meteor.user().services.instagram.accessToken+"&count="+qtd);
 			var data = result.data.data;
 
 			for (var j = 0; j < coments.length; j++) {

@@ -1,10 +1,6 @@
 ﻿<template name="Instagram">
 	<script src="https://assets.pagar.me/checkout/checkout.js"></script>
-		{{#if currentUser}}
-			{{> Usar}}
-		{{else}}
-			{{> Pagar}}			
-		{{/if}}
+	{{> Usar}}
 </template>
 
 <template name="Usar">
@@ -83,7 +79,7 @@
 					              <p>{{caption.text}}</p>
 					            </div>
 					            <div class="cartao-action">
-					              <a href="#">Não curtir esta foto</a>
+					              <a href="#">Curtir esta foto</a>
 								  <a href="#">Não comentar esta foto</a>	
 					            </div>
 					        </div>

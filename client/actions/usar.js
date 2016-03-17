@@ -1,5 +1,4 @@
 Template.Usar.onRendered(function() {
-	//Add blue animated border and remove with condition when focus and blur
     if($('.fg-line')[0]) {
         $('body').on('focus', '.fg-line .form-control', function(){
             $(this).closest('.fg-line').addClass('fg-toggled');
@@ -20,7 +19,6 @@ Template.Usar.onRendered(function() {
         });
     }
 
-    //Add blue border for pre-valued fg-flot text feilds
     if($('.fg-float')[0]) {
         $('.fg-float .form-control').each(function(){
             var i = $(this).val();

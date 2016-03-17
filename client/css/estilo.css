@@ -2,6 +2,7 @@
 html, body {
   height: 100%;
   width: 100%;
+  position: absolute;
 }
 
 .p-t-150 {
@@ -99,7 +100,7 @@ footer .glyphicon:hover {
 .fundoAjuda {
   background: rgba(255,255,255,0.5) url(img/help.jpg) no-repeat center center fixed; 
   display: table;
-  height: 800px;
+  height: 100%;
   position: absolute;
   width: 100%;
   -webkit-background-size: cover;
@@ -112,7 +113,7 @@ footer .glyphicon:hover {
 .fundoInstagram {
   background: rgba(255,255,255,0.5) url(img/instagram.jpg) no-repeat center center fixed; 
   display: table;
-  height: 800px;
+  height: 100%;
   position: absolute;
   width: 100%;
   -webkit-background-size: cover;

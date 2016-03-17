@@ -3,7 +3,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	</head>
 	<body>
-		<section class="{{#if isActivePath '/'}} home {{else}} {{#if isActivePath '/ajuda'}} fundoAjuda {{else}} {{#if isActivePath '/instagram'}} fundoInstagram {{/if}} {{/if}} {{/if}}" id="{{#if isActivePath '/instagram'}}main{{/if}}">
+		<section class="{{#if isActivePath '/'}} home {{else}} {{#if isActivePath '/ajuda'}} fundoAjuda {{else}} {{#if isActivePath '/comprar-pacote'}} fundoAjuda {{else}} {{#if isActivePath '/instagram'}} fundoInstagram {{/if}} {{/if}} {{/if}} {{/if}}" id="{{#if isActivePath '/instagram'}}main{{/if}}">
 			{{#if isNotActivePath '/instagram'}}
 				<div class="p-t-15">
 					<div class="texture-overlay"></div>
@@ -23,12 +23,14 @@
 			<div class="overlay overlay-boxify">
 				<nav>
 					<ul>
-						<li><a href="#services"><i class="fa fa-heart linkMenu"></i>Serviços</a></li>
-						<li><a href="#information"><i class="fa fa-flash linkMenu"></i>Preços</a></li>
-					</ul>
-					<ul>
-						<li><a href="/ajuda"><i class="fa fa-desktop linkMenu"></i>Ajuda</a></li>
-						<li><a href="/ajuda"><i class="fa fa-download linkMenu"></i>Termos e Condições</a></li>
+						{{#if currentUser}}
+							<li><a href="/ajuda"><i class="fa fa-desktop linkMenu"></i>Ajuda</a></li>
+						{{else}}
+							<li><a><i class="fa fa-heart linkMenu efetuarLogin"></i>Login</a></li>
+							<li><a href="#services"><i class="fa fa-heart linkMenu"></i>Serviços</a></li>
+							<li><a href="#information"><i class="fa fa-flash linkMenu"></i>Preços</a></li>
+							<li><a href="/ajuda"><i class="fa fa-download linkMenu"></i>Termos e Condições</a></li>
+						{{/if}}
 					</ul>
 				</nav>
 			</div>
