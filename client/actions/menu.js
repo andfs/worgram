@@ -63,10 +63,14 @@ Template.Menu.onCreated(function() {
 
 Template.Menu.helpers({
 	foto: function() {
-		return Meteor.user().services.instagram.profile_picture;
+        if(Template.instance().subscriptionsReady()) {
+            return Meteor.user().services.instagram.profile_picture;
+        }
     },
 
     userName: function() {
-		return Meteor.user().services.instagram.username;
+        if(Template.instance().subscriptionsReady()) {
+            return Meteor.user().services.instagram.username;
+        }
     }
 });

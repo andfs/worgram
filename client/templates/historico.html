@@ -1,0 +1,54 @@
+<template name="Historico">
+	<section id="main">
+		{{> Menu}}
+		<section id="content">
+                <div class="container">
+                    <div class="block-header">
+                        <h2>Histórico e Pendências <small>Visualize aqui como anda o processamento de seu pacote, e o histórico de hashtags que você utilizou</small></h2>
+                    
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Pendências <small>Andamento da execução do pacote.</small></h2>
+                                </div>
+                                <div class="card-body">
+                                    <div class="epc-item bgm-orange">
+                                    	{{#if possuiPendencia}}
+                                    		<div class="easy-pie main-pie" data-percent="{{porcentagemConclusao}}">
+			                                    <div class="percent">{{porcentagemConclusao}}</div>
+			                                    <div class="pie-title">Porcentagem de conclusão</div>
+			                                </div>
+			                            {{else}}
+			                            	<p>Não há pendências.</p>
+                                    	{{/if}}
+		                            </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Histórico de Hashtags <small>Hashtags utilizadas</small></h2>
+                                </div>
+                                <div class="card-body">
+                                    <div class="epc-item bgm-orange">
+                                    	{{#if possuiHistorico}}
+                                    		{{#each historico}}
+                                    			<span>{{hashtag}}</span>
+                                    		{{/each}}
+			                            {{else}}
+			                            	<p>Não há hashtags utilizadas.</p>
+                                    	{{/if}}
+		                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+   				</div>
+	   		</section>
+	   	</section>
+</template>

@@ -31,6 +31,17 @@ FlowRouter.route('/comprar-pacote', {
 	}
 });
 
+FlowRouter.route('/historico-pendencias', {
+	name: 'historico-pendencias',
+	action: function() {
+		BlazeLayout.render('Principal', {main: 'Historico'});
+	},
+	subscriptions: function(params, queryParams) {
+        this.register('pendenciasCollection', Meteor.subscribe('pendenciasCollection'));
+        this.register('historicoCollection', Meteor.subscribe('historicoCollection'));
+    }
+});
+
 FlowRouter.triggers.enter([function(context, redirect){
 	if(!Meteor.userId() && context.path != "/ajuda") {
 		FlowRouter.go('/')

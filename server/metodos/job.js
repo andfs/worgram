@@ -12,13 +12,14 @@ Meteor.startup(function () {
 	    	var pendencia = pendencias[i];
 
 	    	if(pendencia.get(idsFotosPendentesComentar).length > 0 && pendencia.get(idsFotosPendentesCurtir).length > 0) {
-	    		Meteor.call('curtirComentar', pendencia.get('hashtag'), pendencia.get('comentarios'), false);
+	    		Meteor.call('comentarJob', pendencia.get('hashtag'), pendencia.get('comentarios'), pendencia.get('idsFotosPendentesComentar'));
+	    		Meteor.call('curtirJob', pendencia.get('hashtag'), pendencia.get('idsFotosPendentesCurtir'));
 	    	}
 	    	else if(pendencia.get(idsFotosPendentesComentar).length > 0) {
-	    		Meteor.call('comentar', pendencia.get('hashtag'), pendencia.get('comentarios'), false);
+	    		Meteor.call('comentarJob', pendencia.get('hashtag'), pendencia.get('comentarios'), pendencia.get('idsFotosPendentesComentar'));
 	    	}
 	    	else if(pendencia.get(idsFotosPendentesCurtir).length > 0) {
-	    		Meteor.call('curtir', pendencia.get('hashtag'), false);
+	    		Meteor.call('curtirJob', pendencia.get('hashtag'), pendencia.get('idsFotosPendentesCurtir'));
 	    	}
 	    	pendencia.remove();
 	    };

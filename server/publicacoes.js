@@ -3,3 +3,15 @@ Meteor.publish('usersCollection', function() {
 		return Meteor.users.find({_id: this.userId}, {'services.instagram.username': 1, 'services.instagram.profile_picture': 1});
 	}
 });
+
+Meteor.publish('pendenciasCollection', function() {
+	if(this.userId) {
+		return Meteor.pendencias.find({userId: this.userId});
+	}
+});
+
+Meteor.publish('historicoCollection', function() {
+	if(this.userId) {
+		return Meteor.historico.find({userId: this.userId});
+	}
+});

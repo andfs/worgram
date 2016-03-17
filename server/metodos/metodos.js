@@ -138,10 +138,30 @@ Meteor.methods({
 				}
 				else {
 					var historicoUsuario = getHistorico(data[i].id, hashtag, 'idFotoCurtida');
+					historicoUsuario.set('qtdFotoInicial', data.length);
 					historicoUsuario.save();
 				}
 			};
 		}
+	},
+
+	curtirJob: function(hashtag, ids) {
+		this.unblock();
+
+		for (var i = 0; i < ids.length; i++) 
+		{
+			var retorno = HTTP.post("https://api.instagram.com/v1/media/" + ids[i].id + "/likes?access_token=" + Meteor.user().services.instagram.accessToken);
+			
+			if(retorno.data.meta.code == "429") {
+				var pendenciaUsuario = getPendenciaUsuario('idsFotosPendentesCurtir', ids.slice[i+1]);
+				pendenciaUsuario.save();
+				break;
+			}
+			else {
+				var historicoUsuario = getHistorico(ids[i].id, hashtag, 'idFotoCurtida');
+				historicoUsuario.save();
+			}
+		};
 	},
 
 	comentar: function(hashtag, coments, checar, qtd){
@@ -166,6 +186,7 @@ Meteor.methods({
 					}
 					else {
 						var historicoUsuario = getHistorico(data[i].id, hashtag, 'idFotoComentada');
+						historicoUsuario.set('qtdFotoInicial', data.length);
 						historicoUsuario.save();
 					}
 					
@@ -176,6 +197,30 @@ Meteor.methods({
 			}
 		};
 			
+	},
+
+	comentarJob: function(hashtag, coments, ids){
+		this.unblock();
+		for (var j = 0; j < coments.length; j++) {
+			var comentarioAtual = coments[j];
+			for (var i = 0; i < ids.length; i++) 
+			{
+				var retorno = HTTP.post("https://api.instagram.com/v1/media/" + ids[i].id + "/comments", {params: {access_token: Meteor.user().services.instagram.accessToken, text: comentarioAtual}});
+				if(retorno.data.meta.code == "429") {
+					var pendenciaUsuario = getPendenciaUsuario('idsFotosPendentesComentar', ids.slice[i+1], coments);
+					pendenciaUsuario.save();
+					break;
+				}
+				else {
+					var historicoUsuario = getHistorico(ids[i].id, hashtag, 'idFotoComentada');
+					historicoUsuario.save();
+				}
+				
+				if(++j >= 3) {
+					j = 0;
+				}
+			}
+		}
 	},
 
 	curtirComentar: function(hashtag, coments, checar) {

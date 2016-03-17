@@ -9,7 +9,8 @@ Historico = new Astro.Class({
 	    idFotoCurtida: 'string',
 	    idFotoComentada: 'string',
 	    hashtag: 'string',
-	    data: 'date'
+	    data: 'date',
+	    qtdFotoInicial: 'number'
   }
 
 });
