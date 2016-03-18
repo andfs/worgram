@@ -6,12 +6,12 @@ Meteor.publish('usersCollection', function() {
 
 Meteor.publish('pendenciasCollection', function() {
 	if(this.userId) {
-		return Meteor.pendencias.find({userId: this.userId});
+		return pendenciasCollection.find({userId: this.userId});
 	}
 });
 
 Meteor.publish('historicoCollection', function() {
 	if(this.userId) {
-		return Meteor.historico.find({userId: this.userId});
+		return historicoCollection.find({userId: this.userId});
 	}
 });

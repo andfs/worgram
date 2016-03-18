@@ -41,5 +41,9 @@ Template.Historico.helpers({
         };
 
         return (totalP / total) * 100;
+    },
+
+    historicos: function() {
+        return historicoCollection.find();
     }
 });

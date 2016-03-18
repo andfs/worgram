@@ -1,7 +1,7 @@
 <template name="Historico">
 	<section id="main">
 		{{> Menu}}
-		<section id="content">
+		<section id="content" class="animated fadeIn">
                 <div class="container">
                     <div class="block-header">
                         <h2>Histórico e Pendências <small>Visualize aqui como anda o processamento de seu pacote, e o histórico de hashtags que você utilizou</small></h2>
@@ -37,8 +37,8 @@
                                 <div class="card-body">
                                     <div class="epc-item bgm-orange">
                                     	{{#if possuiHistorico}}
-                                    		{{#each historico}}
-                                    			<span>{{hashtag}}</span>
+                                    		{{#each historicos}}
+                                    			{{hashtag}}
                                     		{{/each}}
 			                            {{else}}
 			                            	<p>Não há hashtags utilizadas.</p>
