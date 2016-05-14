@@ -1,0 +1,10 @@
+{
+    "name": "youliker",
+    "version": "0.0.1",
+    "dependencies": {
+        "meteor": "1.2.1"
+    },
+    "scripts": {
+        "start": "meteor -- settings server/settings.json"
+    }
+}

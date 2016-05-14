@@ -31,6 +31,13 @@ FlowRouter.route('/comprar-pacote', {
 	}
 });
 
+FlowRouter.route('/blacklist', {
+	name: 'blacklist',
+	action: function() {
+		BlazeLayout.render('Principal', {main: 'Blacklist'});
+	}
+});
+
 FlowRouter.route('/historico-pendencias', {
 	name: 'historico-pendencias',
 	action: function() {

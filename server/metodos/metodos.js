@@ -5,7 +5,7 @@
 		var hj = moment();
 		if(Meteor.user().pagamento.valor == Meteor.settings.public.valorBronze) 
 		{
-			if(dtPagamento.isAfter(hj.subtract(1, 'days')) && dtPagamento.isBefore(hj)) 
+			if(dtPagamento.isAfter(hj.subtract(1, 'days'))) 
 			{
 				var historicoPesquisa = historicoCollection.find({userId: Meteor.userId(), data: {$gte: dtPagamento.toDate()}}).count();
 				if(historicoPesquisa > 1) {
@@ -22,7 +22,7 @@
 		}
 		else if(Meteor.user().pagamento.valor == Meteor.settings.public.valorPrata) 
 		{
-			if(dtPagamento.isAfter(hj.subtract(1, 'weeks')) && dtPagamento.isBefore(hj)) 
+			if(dtPagamento.isAfter(hj.subtract(1, 'weeks'))) 
 			{
 				var historicoPesquisa = historicoCollection.find({userId: Meteor.userId(), data: {$gte: dtPagamento.toDate()}}).count();
 				if(historicoPesquisa > 3) {
@@ -35,7 +35,7 @@
 				throw new Meteor.Error("400", "Tempo de utilização do sistema expirado. Por favor escolha um novo plano");
 			}
 		}
-		else if(dtPagamento.isAfter(hj.subtract(1, 'months')) && dtPagamento.isBefore(hj)) 
+		else if(dtPagamento.isAfter(hj.subtract(1, 'months'))) 
 		{
 			var historicoPesquisa = historicoCollection.find({userId: Meteor.userId(), data: {$gte: dtPagamento.toDate()}}).count();
 				if(historicoPesquisa > 10) {
@@ -233,5 +233,9 @@ Meteor.methods({
 			Meteor.call('curtir', hashtag, false, qtd);
 			Meteor.call('comentar', hashtag, coments, false, qtd);
 		}
+	},
+
+	excluirBlacklist: function(hashtag) {
+		blacklistCollection.update({userId: Meteor.userId()}, {$pull: {hashtags: hashtag}});
 	}
 });

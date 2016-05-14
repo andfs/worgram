@@ -1,0 +1,49 @@
+<template name="Blacklist">
+	<section id="main">
+		{{> Menu}}
+		<section id="content" class="animated fadeIn">
+                <div class="container">
+                    <div class="block-header">
+                        <h2>Blacklist <small>Defina aqui as hashtags que você julga inapropriadas para o seu usuário curtir ou comentar. Sempre que alguém solicitar curtidas em alguma foto que contenha as hashtags aqui definidas, não utilizaremos o seu usuário.</small></h2>
+                    
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Hashtags <small>Inclua uma hashtag na sua blacklist.</small></h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <form class="hashtagBlacklist">
+                                            <div class="form-group fg-float">
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control fg-input" id="hashtag" name="hashtag">
+                                                    <label class="fg-label">Digite a hashtag e pressione enter</label>
+                                                </div>
+                                            </div>                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Blacklist <small>Hashtags na blacklist</small></h2>
+                                </div>
+                                <div class="card-body card-padding" style="min-height: 75px;">
+                                	{{#each hashtags}}
+                                		<span class="btn btn-default" style="color: black; cursor: auto; margin-bottom: 5px;">
+                                            {{this}}
+                                            <a class="excluir" style="color: black; cursor: pointer;">x</a>
+                                        </span>
+                                	{{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+   				</div>
+	   		</section>
+	   	</section>
+</template>

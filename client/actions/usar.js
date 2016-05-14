@@ -50,7 +50,7 @@ Template.Usar.events({
 		hashtagText.set(event.target.hashtag.value);
 		Meteor.call('procurarHashtag', event.target.hashtag.value, function(erro, result) {
 			if(erro) {
-				
+				swal("Atenção", erro.reason, "error");
 			}
 			else {
 				qtdHashtag.set(result);

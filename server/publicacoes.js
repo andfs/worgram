@@ -15,3 +15,9 @@ Meteor.publish('historicoCollection', function() {
 		return historicoCollection.find({userId: this.userId});
 	}
 });
+
+Meteor.publish('blacklistCollection', function() {
+	if(this.userId) {
+		return blacklistCollection.find({userId: this.userId});
+	}
+});

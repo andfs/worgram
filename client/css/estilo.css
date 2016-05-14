@@ -32,7 +32,7 @@ html, body {
 
 /* additional sections */
 .home {
-  background: url(img/capa.jpg) no-repeat center center fixed;
+  background: url(img/capa3.jpg) no-repeat center center fixed;
   display: table;
   position: relative;
   width: 100%;
@@ -159,5 +159,16 @@ footer .glyphicon:hover {
     padding: 20px;
 }
 
+span.badge {
+    min-width: 3rem;
+    padding: 0 6px;
+    text-align: center;
+    line-height: inherit;
+    color: #757575;
+    position: absolute;
+    box-sizing: border-box;
+    background-color: #26a69a;
+    border-radius: 2px;
+}
 
 
