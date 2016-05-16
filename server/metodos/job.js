@@ -12,14 +12,14 @@ Meteor.startup(function () {
 	    	var pendencia = pendencias[i];
 
 	    	if(pendencia.get(idsFotosPendentesComentar).length > 0 && pendencia.get(idsFotosPendentesCurtir).length > 0) {
-	    		Meteor.call('comentarJob', pendencia.get('hashtag'), pendencia.get('comentarios'), pendencia.get('idsFotosPendentesComentar'));
-	    		Meteor.call('curtirJob', pendencia.get('hashtag'), pendencia.get('idsFotosPendentesCurtir'));
+	    		Meteor.call('comentarJob', pendencia.get('hashtag'), pendencia.get('comentarios'), pendencia.get('idsFotosPendentesComentar')), pendencia.get('userId');
+	    		Meteor.call('curtirJob', pendencia.get('hashtag'), pendencia.get('idsFotosPendentesCurtir'), pendencia.get('userId'));
 	    	}
 	    	else if(pendencia.get(idsFotosPendentesComentar).length > 0) {
-	    		Meteor.call('comentarJob', pendencia.get('hashtag'), pendencia.get('comentarios'), pendencia.get('idsFotosPendentesComentar'));
+	    		Meteor.call('comentarJob', pendencia.get('hashtag'), pendencia.get('comentarios'), pendencia.get('idsFotosPendentesComentar'), pendencia.get('userId'));
 	    	}
 	    	else if(pendencia.get(idsFotosPendentesCurtir).length > 0) {
-	    		Meteor.call('curtirJob', pendencia.get('hashtag'), pendencia.get('idsFotosPendentesCurtir'));
+	    		Meteor.call('curtirJob', pendencia.get('hashtag'), pendencia.get('idsFotosPendentesCurtir'), pendencia.get('userId'));
 	    	}
 	    	pendencia.remove();
 	    };

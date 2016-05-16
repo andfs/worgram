@@ -64,6 +64,17 @@ var getPendenciaUsuario = function (tipo, data, coments) {
 	return pendenciaUsuario;
 };
 
+var getPendenciaUsuarioJob = function (tipo, data, coments, userId) {
+	pendenciaUsuario = new Pendencia();
+	pendenciaUsuario.set('userId', userId);
+	pendenciaUsuario.push(tipo, data);
+	pendenciaUsuario.set('dataPendencia', new Date());
+	if(coments) {
+		pendenciaUsuario.set('comentarios', coments);
+	}
+	return pendenciaUsuario;
+};
+
 var getHistorico = function(id, hashtag, tipo) {
 	historicoUsuario = new Historico();
 	historicoUsuario.set('userId', Meteor.userId());
@@ -71,7 +82,16 @@ var getHistorico = function(id, hashtag, tipo) {
 	historicoUsuario.set('hashtag', hashtag);
 	historicoUsuario.set('data', new Date());
 	return historicoUsuario;
-}
+};
+
+var getHistoricoJob = function(id, hashtag, tipo, userId) {
+	historicoUsuario = new Historico();
+	historicoUsuario.set('userId', userId);
+	historicoUsuario.set(tipo, id);
+	historicoUsuario.set('hashtag', hashtag);
+	historicoUsuario.set('data', new Date());
+	return historicoUsuario;
+};
 
 Meteor.methods({
 	
@@ -145,7 +165,7 @@ Meteor.methods({
 		}
 	},
 
-	curtirJob: function(hashtag, ids) {
+	curtirJob: function(hashtag, ids, userId) {
 		this.unblock();
 
 		for (var i = 0; i < ids.length; i++) 
@@ -153,12 +173,12 @@ Meteor.methods({
 			var retorno = HTTP.post("https://api.instagram.com/v1/media/" + ids[i].id + "/likes?access_token=" + Meteor.user().services.instagram.accessToken);
 			
 			if(retorno.data.meta.code == "429") {
-				var pendenciaUsuario = getPendenciaUsuario('idsFotosPendentesCurtir', ids.slice[i+1]);
+				var pendenciaUsuario = getPendenciaUsuarioJob('idsFotosPendentesCurtir', ids.slice[i+1], userId);
 				pendenciaUsuario.save();
 				break;
 			}
 			else {
-				var historicoUsuario = getHistorico(ids[i].id, hashtag, 'idFotoCurtida');
+				var historicoUsuario = getHistoricoJob(ids[i].id, hashtag, 'idFotoCurtida', userId);
 				historicoUsuario.save();
 			}
 		};
@@ -199,7 +219,7 @@ Meteor.methods({
 			
 	},
 
-	comentarJob: function(hashtag, coments, ids){
+	comentarJob: function(hashtag, coments, ids, userId){
 		this.unblock();
 		for (var j = 0; j < coments.length; j++) {
 			var comentarioAtual = coments[j];
@@ -207,12 +227,12 @@ Meteor.methods({
 			{
 				var retorno = HTTP.post("https://api.instagram.com/v1/media/" + ids[i].id + "/comments", {params: {access_token: Meteor.user().services.instagram.accessToken, text: comentarioAtual}});
 				if(retorno.data.meta.code == "429") {
-					var pendenciaUsuario = getPendenciaUsuario('idsFotosPendentesComentar', ids.slice[i+1], coments);
+					var pendenciaUsuario = getPendenciaUsuarioJob('idsFotosPendentesComentar', ids.slice[i+1], coments, userId);
 					pendenciaUsuario.save();
 					break;
 				}
 				else {
-					var historicoUsuario = getHistorico(ids[i].id, hashtag, 'idFotoComentada');
+					var historicoUsuario = getHistoricoJob(ids[i].id, hashtag, 'idFotoComentada', userId);
 					historicoUsuario.save();
 				}
 				
